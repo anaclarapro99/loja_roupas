@@ -1,0 +1,223 @@
+/* ================================
+   VESTELUX - Estilo Principal
+   ================================ */
+
+/* Paleta baseada na sua logo */
+:root {
+    --cor-primaria: #0A63FF;
+    --cor-secundaria: #073A9C;
+    --cor-dourado: #F2C94C;
+    --cor-fundo: #F5F7FA;
+    --cor-texto: #333;
+    --cor-card: #fff;
+    --cor-borda: #d9d9d9;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+/* ================================
+   LAYOUT GERAL
+   ================================ */
+
+body {
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+/* Espaçamento padrão */
+.page-container {
+    padding: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ================================
+   NAVBAR (cabeçalho)
+   ================================ */
+
+header {
+    background: var(--cor-primaria);
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+header .logo-area img {
+    height: 42px;
+}
+
+header .logo-area h1 {
+    color: white;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+header nav a {
+    text-decoration: none;
+    margin-left: 25px;
+    color: white;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+header nav a:hover {
+    color: var(--cor-dourado);
+}
+
+/* ================================
+   CARDS PADRÃO
+   ================================ */
+
+.card {
+    background: var(--cor-card);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    border: 1px solid var(--cor-borda);
+    margin-bottom: 30px;
+}
+
+.card h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+    color: var(--cor-secundaria);
+}
+
+/* ================================
+   FORMULÁRIOS
+   ================================ */
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.form-row label {
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.input, 
+select, 
+input[type="number"], 
+input[type="text"] {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda);
+    outline: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.input:focus, 
+select:focus, 
+input:focus {
+    border-color: var(--cor-primaria);
+}
+
+/* ================================
+   BOTÕES
+   ================================ */
+
+.btn {
+    background: var(--cor-primaria);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--cor-secundaria);
+}
+
+.btn-secondary {
+    background: #6c757d;
+}
+
+.btn-secondary:hover {
+    background: #555;
+}
+
+/* ================================
+   ALERTAS / FLASH
+   ================================ */
+
+.flash-danger {
+    background: #ffdddd;
+    border-left: 4px solid #cc0000;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+.flash-success {
+    background: #ddffdd;
+    border-left: 4px solid #279627;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+/* ================================
+   TABELAS (lista de clientes/produtos/vendas)
+   ================================ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    background: var(--cor-primaria);
+    color: white;
+    text-align: left;
+    padding: 12px;
+    font-weight: 600;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+tr:hover td {
+    background: #eef4ff;
+}
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
+
+@media(max-width: 768px) {
+    .page-container {
+        padding: 20px;
+    }
+
+    header nav a {
+        margin-left: 12px;
+    }
+
+    header .logo-area h1 {
+        font-size: 22px;
+    }
+}
