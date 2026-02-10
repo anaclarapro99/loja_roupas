@@ -7,8 +7,8 @@ $produtos = $conn->query("SELECT id,nome,preco,quantidade FROM produtos ORDER BY
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $cliente_id = intval($_POST['cliente_id'] ?? 0);
-    $produto_id = intval($_POST['produto_id'] ?? 0);
+    $cliente_id = intval($_POST['cliente'] ?? 0);
+    $produto_id = intval($_POST['produto'] ?? 0);
     $quantidade = intval($_POST['quantidade'] ?? 0);
 
     if ($cliente_id <= 0) $errors[] = "Escolha um cliente.";
@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $total = $preco * $quantidade;
         $conn->begin_transaction();
         try {
-            $ins = $conn->prepare("INSERT INTO vendas (cliente_id,produto_id,quantidade,total) VALUES (?,?,?,?)");
-            $ins->bind_param("iiid",$cliente_id,$produto_id,$quantidade,$total);
+            $ins = $conn->prepare("INSERT INTO vendas (cliente,produto,quantidade,total) VALUES (?,?,?,?)");
+            $ins->bind_param("iiid", $cliente_id, $produto_id, $quantidade, $total);
             $ins->execute();
 
             $novo_estoque = $estoque_atual - $quantidade;
@@ -68,10 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <div class="form-row">
                 <label>Cliente</label>
-                <select name="cliente_id" class="input" required>
+                <select name="cliente" class="input" required>
                     <option value="">-- selecione --</option>
                     <?php foreach($clientes as $c): ?>
-                    <option value="<?=$c['id']?>" <?= (isset($_POST['cliente_id']) && $_POST['cliente_id']==$c['id']) ? 'selected' : '' ?>>
+                    <option value="<?=$c['id']?>" <?= (isset($_POST['cliente']) && $_POST['cliente']==$c['id']) ? 'selected' : '' ?>>
                         <?=htmlspecialchars($c['nome'])?>
                     </option>
                     <?php endforeach; ?>
@@ -80,10 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="form-row">
                 <label>Produto</label>
-                <select name="produto_id" class="input" required>
+                <select name="produto" class="input" required>
                     <option value="">-- selecione --</option>
                     <?php foreach($produtos as $p): ?>
-                    <option value="<?=$p['id']?>" <?= (isset($_POST['produto_id']) && $_POST['produto_id']==$p['id']) ? 'selected' : '' ?>>
+                    <option value="<?=$p['id']?>" <?= (isset($_POST['produto']) && $_POST['produto']==$p['id']) ? 'selected' : '' ?>>
                         <?=htmlspecialchars($p['nome'])?> — R$ <?=number_format($p['preco'],2,',','.')?> — Estoque: <?=$p['quantidade']?>
                     </option>
                     <?php endforeach; ?>

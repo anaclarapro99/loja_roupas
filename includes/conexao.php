@@ -16,7 +16,7 @@ $DB_NAME = 'loja_roupas';
 // Ajuste o BASE_URL se a pasta no htdocs tiver outro nome (ex: '/LOJA_ROUPAS')
 $BASE_URL = '/LOJA_ROUPAS';
 
-$conn = new mysqli($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+$conn = new mysqli  ($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
 if ($conn->connect_error) {
     die("Erro na conexão: " . $conn->connect_error);
 }
